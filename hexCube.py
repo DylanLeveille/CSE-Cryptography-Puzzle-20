@@ -139,7 +139,14 @@ class HexCube:
             self.rotateSide(self.CenterSide)
              
             units -= 1
-        
+     
+    """
+    Make an R move. 
+    
+    Args:
+         units: number of R-moves made
+    
+    """     
     def moveR(self, units):
         while(units > 0):
             temp = self.CenterSide[2]
@@ -156,7 +163,14 @@ class HexCube:
             self.rotateSide(self.BottomSide)
              
             units -= 1  
-            
+    
+    """
+    Make a U move. 
+    
+    Args:
+         units: number of U-moves made
+    
+    """               
     def moveU(self, units):
         while(units > 0):
             temp = [self.TopSide[0][2], self.TopSide[1][2], self.TopSide[2][2]]
@@ -181,7 +195,14 @@ class HexCube:
             self.rotateSide(self.RightSide)
              
             units -= 1    
-            
+ 
+    """
+    Make a B move. 
+    
+    Args:
+         units: number of B-moves made
+    
+    """              
     def moveB(self, units):
         while(units > 0):
             temp = self.TopSide[0]
@@ -202,7 +223,14 @@ class HexCube:
             self.rotateSide(self.TailEndSide)
              
             units -= 1    
-            
+
+    """
+    Make an L move. 
+    
+    Args:
+         units: number of L-moves made
+    
+    """               
     def moveL(self, units):
         while(units > 0):
             temp = self.LeftSide[0]
@@ -219,7 +247,14 @@ class HexCube:
             self.rotateSide(self.TopSide)
              
             units -= 1    
-            
+
+    """
+    Make a D move. 
+    
+    Args:
+         units: number of D-moves made
+    
+    """               
     def moveD(self, units):
         while(units > 0):
             temp = [self.CenterSide[0][0], self.CenterSide[1][0], self.CenterSide[2][0]]
@@ -244,7 +279,14 @@ class HexCube:
             self.rotateSide(self.LeftSide)
              
             units -= 1    
+
+    """
+    Rotate a side of the cube clockwise
     
+    Args:
+         side: the side being turned
+    
+    """       
     def rotateSide(self, side):
         temp = [side[0][2], side[1][2], side[2][2]]
         side[2][2] = side[0][2]
@@ -258,7 +300,13 @@ class HexCube:
         side[2][1] = temp[1]
         side[2][0] = temp[2]
         
-            
+    """
+    Allows a move to be made on the Hex Cube
+    
+    Args:
+         move: a valid hexcube move to be played
+    
+    """               
     def makeMove(self, move):
         if move not in HexCube.valid_moves: #check if move is valid
             raise ValueError("move : " + str(move) + " is not a valid move.")
@@ -275,7 +323,8 @@ class HexCube:
             self.moveL((HexCube.valid_moves.index(move) % 3) + 1)     
         else:
             self.moveD((HexCube.valid_moves.index(move) % 3) + 1) 
-       
+
+#allows the solution of the given cube to be made   
 if __name__ == "__main__":
     givenSpecs = [("O", "22"),("R", "5b"),("G", "61"),("O", "50"),("O", "76"),("B", "6d"),("B", "77"),("G", "2a"),("O", "63"),
 ("G", "2a"),("B", "6d"),("R", "74"),("W", "48"),("Y", "6d"),("G", "6f"),("Y", "7c"),("W", "7a"),("W", "3a"),
@@ -295,5 +344,5 @@ if __name__ == "__main__":
         myHexCube.makeMove(move)
         
     myHexCube.printCube()
-    myHexCube.printCubeLabels()    
+    myHexCube.printCubeLabels() #is the result we are looking for    
    
